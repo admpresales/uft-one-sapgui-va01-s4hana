@@ -47,6 +47,6 @@ SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiStatusBar(
 OrderNumber = SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiStatusBar("StatusBar").GetROProperty("item2") ' Output the order number as a variable
 DataTable.Value("dtOrderNumber","Global") = OrderNumber
 
-msgbox OrderNumber
+'msgbox OrderNumber
 
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiButton("Exit").Click @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf5.xml_;_
