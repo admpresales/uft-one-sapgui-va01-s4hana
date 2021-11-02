@@ -1,5 +1,6 @@
 ﻿'===========================================================
 'Function to Create a Random Number with DateTime Stamp
+'	Should modify this function to allow you to set the date as todays date rather than hardcoded to the date that the script was initially created
 '===========================================================
 Function fnRandomNumberWithDateTimeStamp()
 
