@@ -32,7 +32,7 @@ SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SendKey ENTER @@
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Sold-To Party").Set "EWM17-CU02" @@ hightlight id_;_3_;_script infofile_;_ZIP::ssf3.xml_;_
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Ship-To Party").Set "EWM17-CU02" @@ hightlight id_;_4_;_script infofile_;_ZIP::ssf3.xml_;_
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Cust. Reference").Set "450000019998" @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf3.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Cust. Ref. Date").Set "11/02/2021" @@ hightlight id_;_2_;_script infofile_;_ZIP::ssf3.xml_;_
+SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Cust. Ref. Date").Set Month(Now) &"/" & Day(Now) & "/" & Year(Now)
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiTable("All Items").SetCellData 1,"Item","10" @@ hightlight id_;_5_;_script infofile_;_ZIP::ssf3.xml_;_
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiTable("All Items").SetCellData 1,"Material","EWMS4-01" @@ hightlight id_;_5_;_script infofile_;_ZIP::ssf3.xml_;_
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiTable("All Items").SetCellData 1,"Order Quantity","1" @@ hightlight id_;_5_;_script infofile_;_ZIP::ssf3.xml_;_
