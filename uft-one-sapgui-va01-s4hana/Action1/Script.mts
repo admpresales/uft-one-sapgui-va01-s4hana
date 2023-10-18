@@ -50,3 +50,7 @@ DataTable.Value("dtOrderNumber","Global") = OrderNumber
 'msgbox OrderNumber
 
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiButton("Exit").Click @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf5.xml_;_
+
+SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").Maximize @@ hightlight id_;_0_;_script infofile_;_ZIP::ssf6.xml_;_
+SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiButton("Exit").Click @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf6.xml_;_
+SAPGuiSession("Session").SAPGuiWindow("Log Off").SAPGuiButton("Yes").Click @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf7.xml_;_
