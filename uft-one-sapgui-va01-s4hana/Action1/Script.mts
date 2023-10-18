@@ -18,21 +18,42 @@ fnRandomNumberWithDateTimeStamp = Int(sDate & sMonth & sYear & sHour & sMinute &
 End Function
 '======================== End Function =====================
 
-Dim OrderNumber
+Dim StatusBarText, StatusBarArray, OrderNumber
+
+AIUtil.SetContext SAPGuiSession("micclass:=SAPGuiSession")
 
 SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").Maximize @@ hightlight id_;_0_;_script infofile_;_ZIP::ssf1.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("OKCode").Set "/nva01" @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf1.xml_;_
+'SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("OKCode").Set "/nva01" @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf1.xml_;_
+AIUtil("combobox").SetText "/nva01"
 SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SendKey ENTER @@ hightlight id_;_0_;_script infofile_;_ZIP::ssf1.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("*Order Type").Set "OR" @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf2.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Sales Organization").Set "1710" @@ hightlight id_;_2_;_script infofile_;_ZIP::ssf2.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Distribution Channel").Set "10" @@ hightlight id_;_3_;_script infofile_;_ZIP::ssf2.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Division").Set "00" @@ hightlight id_;_4_;_script infofile_;_ZIP::ssf2.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Division").SetFocus @@ hightlight id_;_4_;_script infofile_;_ZIP::ssf2.xml_;_
+'SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("*Order Type").Set "OR" @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf2.xml_;_
+
+AIUtil("text_box", "Order Type").SetText "OR"
+'SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Sales Organization").Set "1710" @@ hightlight id_;_2_;_script infofile_;_ZIP::ssf2.xml_;_
+
+AIUtil("text_box", "Sales Organization").SetText "1710"
+'SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Distribution Channel").Set "10" @@ hightlight id_;_3_;_script infofile_;_ZIP::ssf2.xml_;_
+
+AIUtil("text_box", "Distribution Channel.").SetText "10"
+'SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Division").Set "00" @@ hightlight id_;_4_;_script infofile_;_ZIP::ssf2.xml_;_
+
+AIUtil("text_box", "Division").SetText "00"
+'SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SAPGuiEdit("Division").SetFocus @@ hightlight id_;_4_;_script infofile_;_ZIP::ssf2.xml_;_
 SAPGuiSession("Session").SAPGuiWindow("Create Sales Documents").SendKey ENTER @@ hightlight id_;_0_;_script infofile_;_ZIP::ssf2.xml_;_
+
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Sold-To Party").Set "EWM17-CU02" @@ hightlight id_;_3_;_script infofile_;_ZIP::ssf3.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Ship-To Party").Set "EWM17-CU02" @@ hightlight id_;_4_;_script infofile_;_ZIP::ssf3.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Cust. Reference").Set "450000019998" @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf3.xml_;_
-SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Cust. Ref. Date").Set Month(Now) &"/" & Day(Now) & "/" & Year(Now)
+AIUtil("text_box", "Sold-To Party:").SetText "EWM17-CU02"
+
+'SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Ship-To Party").Set "EWM17-CU02" @@ hightlight id_;_4_;_script infofile_;_ZIP::ssf3.xml_;_
+
+AIUtil("text_box", "Ship-To Party:").SetText "EWM17-CU02"
+'SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Cust. Reference").Set "450000019998" @@ hightlight id_;_1_;_script infofile_;_ZIP::ssf3.xml_;_
+
+AIUtil("text_box", "Cust. Reference").SetText "450000019998"
+'SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiEdit("Cust. Ref. Date").Set Month(Now) &"/" & Day(Now) & "/" & Year(Now)
+
+AIUtil("text_box", "Cust. Ref. Date").SetText Month(Now) &"/" & Day(Now) & "/" & Year(Now)
+
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiTable("All Items").SetCellData 1,"Item","10" @@ hightlight id_;_5_;_script infofile_;_ZIP::ssf3.xml_;_
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiTable("All Items").SetCellData 1,"Material","EWMS4-01" @@ hightlight id_;_5_;_script infofile_;_ZIP::ssf3.xml_;_
 SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiTable("All Items").SetCellData 1,"Order Quantity","1" @@ hightlight id_;_5_;_script infofile_;_ZIP::ssf3.xml_;_
@@ -44,7 +65,13 @@ SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiStatusBar(
 '===========================================================
 '	Get the order number and store as a variable that could be used in the script, for example, if you wanted to do a va02 and/or a va03
 '===========================================================
-OrderNumber = SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiStatusBar("StatusBar").GetROProperty("item2") ' Output the order number as a variable
+'OrderNumber = SAPGuiSession("Session").SAPGuiWindow("Create Standard Order:").SAPGuiStatusBar("StatusBar").GetROProperty("item2") ' Output the order number as a variable
+
+StatusBarText = AIUtil.FindTextBlock(micAnyText, micWithAnchorOnRight, AIUtil("button", "Save")).GetText
+
+StatusBarArray = Split(StatusBarText," ")
+OrderNumber =  StatusBarArray(2)
+print "The Order number is " & StatusBarArray(2)
 DataTable.Value("dtOrderNumber","Global") = OrderNumber
 
 'msgbox OrderNumber
